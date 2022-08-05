@@ -1,74 +1,21 @@
 {
-    "metadata": {
-        "title": "Maze Ransomware Network Detection",
-        "description": "The malware tries to make connections to IP addresses that have been crypted in the binary to send information about the infected machine. Rule ID: bafb8a08-efb6-4828-b096-5b6f3b72fb87 Author: Furkan Celik . License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/eRw8zWVyyEXk",
-        "tags": [
-            "attack.T1486",
-            "attack.T1090",
-            "attack.Command_And_Control"
-        ],
-        "query": "(url.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\") OR destination.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\"))"
-    },
-    "trigger": {
-        "schedule": {
-            "interval": "30m"
-        }
-    },
-    "input": {
-        "search": {
-            "request": {
-                "body": {
-                    "size": 0,
-                    "query": {
-                        "bool": {
-                            "must": [
-                                {
-                                    "query_string": {
-                                        "query": "(url.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\") OR destination.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\"))",
-                                        "analyze_wildcard": true
-                                    }
-                                }
-                            ],
-                            "filter": {
-                                "range": {
-                                    "@timestamp": {
-                                        "gte": "now-30m/m"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "indices": [
-                    "filebeat-*"
-                ]
-            }
-        }
-    },
-    "condition": {
-        "compare": {
-            "ctx.payload.hits.total": {
-                "not_eq": 0
-            }
-        }
-    },
-    "actions": {
-        "send_email": {
-            "throttle_period": "15m",
-            "email": {
-                "profile": "standard",
-                "from": "root@localhost",
-                "to": "root@localhost",
-                "subject": "Sigma Rule 'Maze Ransomware Network Detection'",
-                "body": "Hits:\n{{#ctx.payload.hits.hits}}{{_source}}\n================================================================================\n{{/ctx.payload.hits.hits}}",
-                "attachments": {
-                    "data.json": {
-                        "data": {
-                            "format": "json"
-                        }
-                    }
-                }
-            }
-        }
-    }
+    "displayName": "Maze Ransomware Network Detection by Furkan Celik",
+    "description": "The malware tries to make connections to IP addresses that have been crypted in the binary to send information about the infected machine. Author: Furkan Celik. Rule ID: bafb8a08-efb6-4828-b096-5b6f3b72fb87. License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/eRw8zWVyyEXk.",
+    "severity": "high",
+    "enabled": true,
+    "query": "Proxy | where (cs-host =~ '91.218.114.4' or cs-host =~ '91.218.114.11' or cs-host =~ '91.218.114.26' or cs-host =~ '91.218.114.25' or cs-host =~ '91.218.114.26' or cs-host =~ '91.218.114.31' or cs-host =~ '91.218.114.32' or cs-host =~ '91.218.114.77' or cs-host =~ '91.218.114.38' or cs-host =~ '91.218.114.37' or cs-host =~ '91.218.114.79')",
+    "queryFrequency": "PT30M",
+    "queryPeriod": "PT30M",
+    "triggerOperator": "GreaterThan",
+    "triggerThreshold": 0,
+    "suppressionDuration": "PT2H30M",
+    "suppressionEnabled": true,
+    "tactics": [
+        "CommandandControl",
+        "Impact"
+    ],
+    "techniques": [
+        "T1090",
+        "T1486"
+    ]
 }
