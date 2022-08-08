@@ -1,21 +1,36 @@
 {
-    "displayName": "Maze Ransomware Network Detection by Furkan Celik",
-    "description": "The malware tries to make connections to IP addresses that have been crypted in the binary to send information about the infected machine. Author: Furkan Celik. Rule ID: bafb8a08-efb6-4828-b096-5b6f3b72fb87. License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/eRw8zWVyyEXk.",
-    "severity": "high",
+    "description": "The malware tries to make connections to IP addresses that have been crypted in the binary to send information about the infected machine. Author: Furkan Celik. License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md",
     "enabled": true,
-    "query": "Proxy | where (cs-host =~ '91.218.114.4' or cs-host =~ '91.218.114.11' or cs-host =~ '91.218.114.26' or cs-host =~ '91.218.114.25' or cs-host =~ '91.218.114.26' or cs-host =~ '91.218.114.31' or cs-host =~ '91.218.114.32' or cs-host =~ '91.218.114.77' or cs-host =~ '91.218.114.38' or cs-host =~ '91.218.114.37' or cs-host =~ '91.218.114.79')",
-    "queryFrequency": "PT30M",
-    "queryPeriod": "PT30M",
-    "triggerOperator": "GreaterThan",
-    "triggerThreshold": 0,
-    "suppressionDuration": "PT2H30M",
-    "suppressionEnabled": true,
-    "tactics": [
-        "CommandandControl",
-        "Impact"
+    "false_positives": [
+        "Unknown"
     ],
-    "techniques": [
+    "filters": [],
+    "from": "now-360s",
+    "immutable": false,
+    "index": [
+        "filebeat-*"
+    ],
+    "interval": "5m",
+    "rule_id": "bafb8a08-efb6-4828-b096-5b6f3b72fb87",
+    "language": "lucene",
+    "output_index": ".siem-signals-default",
+    "max_signals": 100,
+    "risk_score": 65,
+    "name": "Maze Ransomware Network Detection Elastic",
+    "query": "(url.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\") OR destination.domain:(\"91.218.114.4\" OR \"91.218.114.11\" OR \"91.218.114.26\" OR \"91.218.114.25\" OR \"91.218.114.26\" OR \"91.218.114.31\" OR \"91.218.114.32\" OR \"91.218.114.77\" OR \"91.218.114.38\" OR \"91.218.114.37\" OR \"91.218.114.79\"))",
+    "meta": {
+        "from": "1m"
+    },
+    "severity": "high",
+    "tags": [
         "T1090",
         "T1486"
+    ],
+    "to": "now",
+    "type": "query",
+    "threat": [],
+    "version": 1,
+    "references": [
+        "https://tdm.socprime.com/tdm/info/eRw8zWVyyEXk"
     ]
 }
