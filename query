@@ -1,0 +1,1 @@
+SecurityEvent | where (EventID == 4624 and AuthenticationPackageName =~ 'Kerberos' and LogonType == "3" and IpAddress =~ '127.0.0.1' and TargetUserSid endswith '-500')
