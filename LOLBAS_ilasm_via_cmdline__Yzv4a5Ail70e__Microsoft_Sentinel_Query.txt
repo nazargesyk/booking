@@ -1,1 +1,0 @@
-SecurityEvent |  where EventID == 4688 | where NewProcessName endswith @'\ilasm.exe'
