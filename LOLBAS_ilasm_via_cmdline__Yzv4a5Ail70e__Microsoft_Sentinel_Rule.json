@@ -1,0 +1,19 @@
+{
+    "displayName": "LOLBAS ilasm (via cmdline) by SOC Prime Team",
+    "description": "Detects use of ilasm.exe as a living off the land technique. Author: SOC Prime Team. Rule ID: 39a066dd-471e-4a95-97cc-90f3bc2c5b53. License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/Yzv4a5Ail70e.",
+    "severity": "high",
+    "enabled": true,
+    "query": "SecurityEvent |  where EventID == 4688 | where NewProcessName endswith @'\\ilasm.exe' | extend AccountCustomEntity = TargetUserName | extend HostCustomEntity = Computer | extend IPCustomEntity = IpAddress",
+    "queryFrequency": "PT30M",
+    "queryPeriod": "PT30M",
+    "triggerOperator": "GreaterThan",
+    "triggerThreshold": 0,
+    "suppressionDuration": "PT2H30M",
+    "suppressionEnabled": true,
+    "tactics": [
+        "DefenseEvasion"
+    ],
+    "techniques": [
+        "T1127"
+    ]
+}
