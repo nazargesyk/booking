@@ -1,0 +1,18 @@
+{
+  "_id": "39a066dd-471e-4a95-97cc-90f3bc2c5b53-LOLBAS-ilasm-via-cmdline",
+  "_type": "search",
+  "_source": {
+    "title": "Sigma: LOLBAS ilasm (via cmdline)",
+    "description": "Detects use of ilasm.exe as a living off the land technique. Author: SOC Prime Team. Rule ID: 39a066dd-471e-4a95-97cc-90f3bc2c5b53 License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/Yzv4a5Ail70e.",
+    "hits": 0,
+    "columns": [],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\": \"winlogbeat-*\", \"filter\": [], \"highlight\": {\"pre_tags\": [\"@kibana-highlighted-field@\"], \"post_tags\": [\"@/kibana-highlighted-field@\"], \"fields\": {\"*\": {}}, \"require_field_match\": false, \"fragment_size\": 2147483647}, \"query\": {\"query_string\": {\"query\": \"process.executable.text:*\\\\\\\\ilasm.exe\", \"analyze_wildcard\": true}}}"
+    }
+  }
+}
