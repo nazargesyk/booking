@@ -1,0 +1,21 @@
+{
+  "_id": "00a7fb08-7aed-41ce-8f69-c97127584b0a-Detect-Persistence-Of-Grandoreiro-Banking-Trojan-via-registry_event",
+  "_type": "search",
+  "_source": {
+    "title": "Sigma: Detect Persistence Of Grandoreiro Banking Trojan via registry_event)",
+    "description": "Attackers provide fluency to execute the trojan every time the computer restarts. With this rule, you can detect the change made to the registry. Author: TestMT. Rule ID: 00a7fb08-7aed-41ce-8f69-c97127584b0a License: https://github.com/Neo23x0/sigma/blob/master/LICENSE.Detection.Rules.md. Reference: https://tdm.socprime.com/tdm/info/LciIloHyE2Ci.",
+    "hits": 0,
+    "columns": [
+      "winlog.event_data.TargetObject",
+      "winlog.event_data.Details"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\": \"winlogbeat-*\", \"filter\": [], \"highlight\": {\"pre_tags\": [\"@kibana-highlighted-field@\"], \"post_tags\": [\"@/kibana-highlighted-field@\"], \"fields\": {\"*\": {}}, \"require_field_match\": false, \"fragment_size\": 2147483647}, \"query\": {\"query_string\": {\"query\": \"(winlog.event_data.TargetObject:*Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\Run* AND winlog.event_data.Details:*kitbootnetsuuui.exe*)\", \"analyze_wildcard\": true}}}"
+    }
+  }
+}
