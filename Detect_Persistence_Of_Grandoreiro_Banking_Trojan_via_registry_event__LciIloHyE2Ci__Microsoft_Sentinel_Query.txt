@@ -1,0 +1,1 @@
+SysmonEvent |  where EventID == 12 or EventID == 13 or EventID == 14 | where ((TargetObject contains @'Microsoft\Windows\CurrentVersion\Run') and (Details contains 'kitbootnetsuuui.exe'))
