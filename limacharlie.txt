@@ -1,0 +1,7 @@
+op: and
+rules:
+- op: is windows
+- case sensitive: false
+  op: contains
+  path: event/COMMAND_LINE
+  value: ' -bxor'
